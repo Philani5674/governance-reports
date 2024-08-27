@@ -55,7 +55,7 @@ window.addEventListener('load', () => {
 async function CompleteDataShowCaseLine(){
   try {
     // Fetch data from the JSON file
-    const response = await fetch('/frontend/Assets/PastMonthsTotals.json'); // Update the path
+    const response = await fetch('/Assets/PastMonthsTotals.json'); // Update the path
     const jsonData = await response.json();
     let values = Object.values(jsonData.EnterprisePurpose)
 
