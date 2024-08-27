@@ -2,7 +2,7 @@ async function CompletePieChart(formData) {
     const canvasId = 'myPieChart';
     const canvas = document.getElementById(canvasId);
 
-    const response = await fetch('/frontend/Assets/PastMonthsTotals.json');
+    const response = await fetch('/Assets/PastMonthsTotals.json');
     const jsonData = await response.json();
     let values = Object.values(jsonData)
 

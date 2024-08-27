@@ -285,7 +285,7 @@ function getFormData() {
     const canvasId = 'myPieChart';
     const canvas = document.getElementById(canvasId);
     
-    const response = await fetch('/frontend/Assets/PastMonthsTotals.json');
+    const response = await fetch('/Assets/PastMonthsTotals.json');
       const jsonData = await response.json();
       let values = Object.values(jsonData)
   
@@ -330,7 +330,7 @@ function getFormData() {
   async function renderLineChartEnterprisePurpose(formData) {
     try {
       // Fetch data from the JSON file
-      const response = await fetch('/frontend/Assets/PastMonthsTotals.json'); // Update the path
+      const response = await fetch('/Assets/PastMonthsTotals.json'); // Update the path
       const jsonData = await response.json();
       let values = Object.values(jsonData.EnterprisePurpose)
       const totalQuestions = Object.keys(formData).length;
@@ -380,7 +380,7 @@ function getFormData() {
   async function renderLineChartAccountabilityForPerformance(formData) {
     try {
       // Fetch data from the JSON file
-      const response = await fetch('/frontend/Assets/PastMonthsTotals.json'); // Update the path
+      const response = await fetch('/Assets/PastMonthsTotals.json'); // Update the path
       const jsonData = await response.json();
       let values = Object.values(jsonData.AccountabilityForPerformance)
       const totalQuestions = Object.keys(formData).length;
@@ -430,7 +430,7 @@ function getFormData() {
   async function renderLineChartSustainability(formData) {
     try {
       // Fetch data from the JSON file
-      const response = await fetch('/frontend/Assets/PastMonthsTotals.json'); // Update the path
+      const response = await fetch('/Assets/PastMonthsTotals.json'); // Update the path
       const jsonData = await response.json();
       let values = Object.values(jsonData.Sustainability)
       const totalQuestions = Object.keys(formData).length;
@@ -480,7 +480,7 @@ function getFormData() {
   async function renderLineChartConformance(formData) {
     try {
       // Fetch data from the JSON file
-      const response = await fetch('/frontend/Assets/PastMonthsTotals.json'); // Update the path
+      const response = await fetch('/Assets/PastMonthsTotals.json'); // Update the path
       const jsonData = await response.json();
       let values = Object.values(jsonData.Conformance)
       const totalQuestions = Object.keys(formData).length;

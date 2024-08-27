@@ -150,7 +150,7 @@
             <script>
                 // Load the data
                 (async function() {
-                    const response = await fetch('/frontend/Assets/PastMonthsTotals.json'); // Update the path
+                    const response = await fetch('/Assets/PastMonthsTotals.json'); // Update the path
                     const jsonData = await response.json();
                     console.log(jsonData);
                     let values = Object.values(jsonData.EnterprisePurpose)
