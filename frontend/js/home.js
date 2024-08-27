@@ -47,7 +47,7 @@ async function CompletePieChart(formData) {
 async function renderLineChartEnterprisePurpose(formData) {
     try {
         // Fetch data from the JSON file
-        const response = await fetch('/frontend/Assets/PastMonthsTotals.json'); // Update the path
+        const response = await fetch('/Assets/PastMonthsTotals.json'); // Update the path
         const jsonData = await response.json();
         let values = Object.values(jsonData.EnterprisePurpose)
         const totalQuestions = Object.keys(formData).length;
