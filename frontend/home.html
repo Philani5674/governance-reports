@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .card:hover {
+            background-color: rgb(193, 209, 209);
+        }
+        
+        .this {
+            i {
+                color: orange;
+            }
+        }
+        
+        .myChart {
+            width: 200px;
+            height: 100px;
+            margin-bottom: 0;
+        }
+        
+        .fs-5 {
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="">
+        <nav class="navbar mt-2 navbar-expand-lg navbar-info bg-info">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item bg-white rounded-pill">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-user fa-1x"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+
+        <!--- Profile section-->
+
+        <div class="container mt-3 ">
+            <div class="row bg-success" style="background-image: url(Assets/img/image.avif);">
+                <div style="border-top-right-radius: 4cm; border-bottom-right-radius: 0cm;" class="card col-8 bg-info">
+                    <div class="card-body" style="display: flex;">
+                        <i class="fas fa-user fa-4x text-info"></i>
+                        <div class="">
+                            <h5 class="card-title fa-3x">Welcome to Sidar Governance Dashboard....</h5>
+                            <p class="card-text badge " style="background-color: aqua;">Sipho Jackson</p>
+                            <p class="card-text badge " style="background-color: aqua;">JacksonSi@outlook.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- services section-->
+        <div id="quiz-container">
+            <div class="container mt-2 text-center">
+                <div class="row">
+                    <div class="col-sm-3 ">
+                        <div class="row card shadow mr-0">
+                            <div class="card-header text-center text-white bg-dark"><i class="fas fa-users fa-3x "></i></div>
+                            <div class="card-body ">
+                                <h4> <a class="card-title text-center text-dark" href="#/CompleteData ">Overall Reports</a></h4>
+                                <p class="card-text"></p>
+                            </div>
+                        </div>
+                        <div class="row card text-white mr-0 bg-dark">
+                            <h3>Growth Rate</h3>
+                            <canvas id="growthChart" class="myChart bg-info"></canvas>
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    var ctx = document.getElementById('growthChart').getContext('2d');
+                                    var growthChart = new Chart(ctx, {
+                                        type: 'line',
+                                        data: {
+                                            labels: ['Sept', 'Oct', 'Nov'],
+                                            datasets: [{
+                                                label: '',
+                                                data: [10, 20, 30],
+                                                backgroundColor: 'red',
+                                                borderColor: 'green',
+                                                borderWidth: 1
+                                            }]
+                                        },
+                                        options: {
+                                            responsive: true,
+                                            scales: {
+                                                y: {
+                                                    beginAtZero: true
+                                                }
+                                            }
+                                        }
+                                    });
+                                });
+                            </script>
+
+                        </div>
+                    </div>
+
+                    <div class="col-9">
+                        <div class="row">
+                            <div class="col-12 text-center bg-info shadow m-2">
+                                <h5><span class="badge badge-warning m-0 p-1">3 Months Reports</span></h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card col-4  shadow">
+                                <span class="badge badge-dark m-0 text-white">2023 Septhember Report</span>
+                                <canvas id="myChart1" class="myChart rounded shadow mt-2 bg-light"></canvas>
+                            </div>
+                            <div class="card col-4 shadow">
+                                <span class="badge badge-dark text-white">2023 October Report</span>
+                                <canvas id="myChart2" class="myChart rounded shadow mt-0 bg-light">           
+                                </canvas>
+                            </div>
+                            <div class="card col-sm-4">
+                                <span class="badge badge-dark text-white">2023 November Report</span>
+                                <canvas id="myChart3" class="myChart rounded shadow mt-0 bg-light"></canvas>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="card col-12 shadow mb-2 mt-2">
+                        <h4 class="card-title">12 Months Report</h4>
+                    </div>
+                </div>
+            </div>
+            <script>
+                // Load the data
+                (async function() {
+                    const response = await fetch('/frontend/Assets/PastMonthsTotals.json'); // Update the path
+                    const jsonData = await response.json();
+                    console.log(jsonData);
+                    let values = Object.values(jsonData.EnterprisePurpose)
+                    let values2 = Object.values(jsonData.AccountabilityForPerformance)
+                    let values3 = Object.values(jsonData.Sustainability)
+                    let values4 = Object.values(jsonData.Conformance)
+
+                    let chartdata1 = []
+                    let chartdata2 = []
+                    let chartdata3 = []
+                    chartdata1.push(values[8], values2[8], values3[8], values4[8])
+                    chartdata2.push(values[9], values2[9], values3[9], values4[9])
+                    chartdata3.push(values[10], values2[10], values3[10], values4[10])
+
+
+                    const canvasWidth = 400;
+                    const canvasHeight = 200;
+
+                    const ctx = document.getElementById('myChart1').getContext('2d');
+                    const ctx2 = document.getElementById('myChart2').getContext('2d');
+                    const ctx3 = document.getElementById('myChart3').getContext('2d');
+                    ctx.canvas.width = canvasWidth;
+                    ctx.canvas.height = canvasHeight;
+                    // load the data according to the month month.
+                    const chart2 = new Chart(ctx, {
+                        type: "doughnut",
+                        data: {
+                            labels: [`Purpose     `, 'Accountability', 'Sustainability', 'Conformance'],
+                            datasets: [{
+                                data: chartdata1,
+                                label: [`Enterprise Purpose`, 'AccountabilityForPerformance', 'Sustainability', 'Conformance'],
+                                // diffect colors
+                                backgroundColor: [
+                                    "purple",
+                                    "blue",
+                                    "green",
+                                    "red",
+                                ],
+                                fill: false
+                            }]
+                        },
+                        options: {
+                            title: {
+                                display: true,
+                                text: `September report`
+                            }
+                        }
+                    });
+
+                    //list of {values[9], values[10], values[11]}
+
+
+
+
+                    const chart = new Chart(ctx2, {
+                        type: "doughnut",
+                        data: {
+                            labels: [`Purpose     `, 'Accountability', 'Sustainability', 'Conformance'],
+                            datasets: [{
+                                data: chartdata2,
+                                label: chartdata2,
+                                // diffect colors
+                                backgroundColor: [
+                                    "purple",
+                                    "blue",
+                                    "green",
+                                    "red",
+                                ],
+                                fill: false
+
+                            }]
+                        },
+                        options: {
+
+                            title: {
+                                display: true,
+                                text: `October report`
+                            }
+
+                        }
+                    });
+                    //november
+                    const chart3 = new Chart(ctx3, {
+                        type: "doughnut",
+                        data: {
+                            labels: [`Purpose     `, 'Accountability', 'Sustainability', 'Conformance'],
+                            datasets: [{
+
+                                data: chartdata3,
+
+                                label: chartdata3,
+                                // diffect colors
+                                backgroundColor: [
+                                    "purple",
+                                    "blue",
+                                    "green",
+                                    "red",
+                                ],
+                                fill: false
+                            }]
+                        },
+                        options: {
+                            title: {
+                                display: true,
+                                text: `November report`
+                            }
+                        }
+                    });
+
+                })();
+            </script>
+            <div class="container">
+                <div class="row">
+                    <div class="card col-12 shadow mb-2 mt-2">
+                        <h4 class="card-title"> Surveys Questionnaires</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="card shadow">
+                            <div class="card-header bg-dark text-center text-warning"><i class="fas fa-chart-line fa-4x"></i></div>
+                            <div class="card-body">
+                                <h4> <a class="card-title text-dark text-center" href="#/Enterprise">Enterprise Purpose</a></h4>
+                                <p class="card-text"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3 text-center">
+                        <div class="card shadow border">
+                            <div class="card-header bg-dark text-center text-warning"><i class=" fas fa-clipboard-check fa-4x "></i> </div>
+                            <div class="card-body ">
+                                <h4> <a class="card-title text-center text-dark " href="#/Accountability ">Accountability</a></h4>
+                                <p class="card-text "></p>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-3 ">
+                        <div class="card shadow">
+                            <div class="card-header text-center bg-dark text-warning "><i class="fas fa-leaf fa-4x "></i> </div>
+                            <div class="card-body ">
+                                <h4><a class="card-title text-center text-dark" href="#/Sustainability ">Sustainability</a></h4>
+                                <p class="card-text "></p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 text-center ">
+                        <div class="card shadow">
+                            <div class="card-header text-center bg-dark text-warning"><i class="fas fa-check-circle fa-4x "></i></div>
+                            <div class="card-body text-center ">
+                                <h4> <a class="card-title text-dark " href="#/Comformance ">Comformance</a></h4>
+                                <p class="card-text "></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <script id="quiz-template " type="text/handlebars-template ">
+
+            <div class="container border-0 mt-3 " style="border: 2px blue solid; ">
+                <div class="container mb-2 text-center border border-info ">
+                    <h5 class="m-3 " id="heading ">none</h5>
+                </div>
+
+                <form id="quiz-form " action="javascript:void(0); " class="mb-3 ">
+                    {{#each questions}}
+                    <div class="container border rounded p-3 mb-3 border-info ">
+                        <div class="question ">
+                            <p class="mb-2 ">{{this}}</p>
+                            <div class="form-check ">
+                                <input class="form-check-input " type="radio " name="question{{@index}} " value=0 required>
+                                <label class="form-check-label " for="question{{@index}} ">Non-Existent</label>
+                            </div>
+
+                            <div class="form-check ">
+                                <input class="form-check-input " type="radio " name="question{{@index}} " value=1 " required>
+                            <label class="form-check-label " for="question{{@index}} ">Minimal</label>
+                        </div>
+
+                        <div class="form-check ">
+                            <input class="form-check-input " type="radio " name="question{{@index}} " value=2 required>
+                            <label class="form-check-label " for="question{{@index}} ">Some Elements</label>
+                        </div>
+
+                        <div class="form-check ">
+                            <input class="form-check-input " type="radio " name="question{{@index}} " value=3 required>
+                            <label class="form-check-label " for="question{{@index}} ">Largely in Place</label>
+                        </div>
+
+                        <div class="form-check ">
+                            <input class="form-check-input " type="radio " name="question{{@index}} " value=4 required>
+                            <label class="form-check-label " for="question{{@index}} ">Fully in Place</label>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+                <input type="submit " class="bg-info border rounded " value="Vizualise data ">
+                </form>
+            </div>
+            </script>
+
+            <div style="display: grid; " class="container text-center mt-2 " style="width: 400px; height: 400px; ">
+                <div class="container text-center border border-info ">
+                    <h4 id=" ">Governance Reports</h4>
+                </div>
+                <div class="row ">
+                    <div class="card col-6 ">
+                        <canvas id="myPieChart " style="display: none; "></canvas>
+                    </div>
+                    <div class="card col-6 ">
+                        <canvas id="myLineChart " style="display: none; "></canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- footer-->
+            <footer class="bg-light py-3 ">
+                <div class="container text-center ">
+                    <span><i class="fas fa-envelope fa-2x text-info "></i></span>
+                    <span><i class="fas fa-phone fa-2x text-info "></i></span>
+                    <span><i class="fab fa-facebook fa-2x text-info "></i></span>
+                    <span><i class="fab fa-twitter fa-2x text-info "></i></span>
+                    <span><i class="fab fa-instagram fa-2x text-info "></i></span>
+                </div>
+            </footer>
+
+
+        </div>
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js "></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js "></script>
+        <script src="https://cdn.jsdelivr.net/npm/vanilla-router@1.2.8/index.min.js "></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js "></script>
+        <script src="js/app.js "></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js "></script>
+</body>
+
+</html>

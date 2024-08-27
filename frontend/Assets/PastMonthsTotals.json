@@ -1,0 +1,75 @@
+{
+    "EnterprisePurpose":{
+        "January": 25,
+        "February": 60,
+        "March": 45,
+        "April": 80,
+        "May": 30,
+        "June": 70,
+        "July": 10,
+        "August": 55,
+        "September": 90,
+        "October": 40,
+        "November": 85,
+        "December": 20																							
+    },
+    
+    "AccountabilityForPerformance": {
+        "January": 45,
+        "February": 20,
+        "March": 75,
+        "April": 30,
+        "May": 60,
+        "June": 15,
+        "July": 80,
+        "August": 50,
+        "September": 25,
+        "October": 70,
+        "November": 35,
+        "December": 90
+    },
+    
+    "Sustainability": {
+        "January": 25,
+        "February": 35,
+        "March": 45,
+        "April": 55,
+        "May": 65,
+        "June": 75,
+        "July": 85,
+        "August": 95,
+        "September": 80,
+        "October": 70,
+        "November": 60,
+        "December": 50
+    },
+
+    "Conformance": {
+        "January": 22,
+        "February": 35,
+        "March": 48,
+        "April": 60,
+        "May": 72,
+        "June": 85,
+        "July": 68,
+        "August": 53,
+        "September": 42,
+        "October": 58,
+        "November": 76,
+        "December": 90        
+      },
+      "test":{
+        "January": 30,
+        "February": 45,
+        "March": 20,
+        "April": 65,
+        "May": 80,
+        "June": 55,
+        "July": 35,
+        "August": 70,
+        "September": 40,
+        "October": 75,
+        "November": 25,
+        "December": 50
+      }
+}
